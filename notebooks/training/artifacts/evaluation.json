@@ -1,0 +1,39 @@
+{
+  "model": "XGBoost",
+  "primary_metrics": [
+    "recall",
+    "precision_recall_auc"
+  ],
+  "test_metrics": {
+    "pr_auc": 0.22873543004697078,
+    "roc_auc": 0.6836498182620039,
+    "recall": 0.7250593824228029,
+    "precision": 0.1614438714795716,
+    "f1": 0.26408564939980533,
+    "threshold": 0.4348699748516083
+  },
+  "decision_threshold": 0.4348699748516083,
+  "selected_candidate": 3,
+  "raw_model_features": [
+    "age",
+    "admission_type",
+    "discharge_disposition",
+    "admission_source",
+    "diag_1_group",
+    "diag_2_group",
+    "diag_3_group",
+    "max_glu_serum",
+    "A1Cresult",
+    "change",
+    "diabetesMed",
+    "time_in_hospital",
+    "num_lab_procedures",
+    "num_procedures",
+    "num_medications",
+    "number_outpatient",
+    "number_emergency",
+    "number_inpatient",
+    "number_diagnoses"
+  ],
+  "transformed_feature_count": 104
+}
