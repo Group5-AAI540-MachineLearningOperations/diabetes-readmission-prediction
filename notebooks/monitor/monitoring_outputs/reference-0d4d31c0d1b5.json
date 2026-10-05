@@ -1,0 +1,466 @@
+{
+  "model_version": "0d4d31c0d1b5",
+  "threshold": 0.4348699748516083,
+  "features": {
+    "age": {
+      "kind": "categorical",
+      "categories": [
+        "[0-10)",
+        "[10-20)",
+        "[20-30)",
+        "[30-40)",
+        "[40-50)",
+        "[50-60)",
+        "[60-70)",
+        "[70-80)",
+        "[80-90)",
+        "[90-100)"
+      ],
+      "counts": [
+        15,
+        110,
+        268,
+        536,
+        1433,
+        2602,
+        3392,
+        3881,
+        2640,
+        433,
+        0
+      ]
+    },
+    "admission_type": {
+      "kind": "categorical",
+      "categories": [
+        "Elective",
+        "Emergency",
+        "Newborn",
+        "Trauma Center",
+        "Unknown",
+        "Urgent"
+      ],
+      "counts": [
+        2817,
+        8144,
+        2,
+        1,
+        1544,
+        2802,
+        0
+      ]
+    },
+    "discharge_disposition": {
+      "kind": "categorical",
+      "categories": [
+        "Admitted as an inpatient to this hospital",
+        "Discharged to home",
+        "Discharged/transferred to ICF",
+        "Discharged/transferred to SNF",
+        "Discharged/transferred to a federal health care facility.",
+        "Discharged/transferred to a long term care hospital.",
+        "Discharged/transferred to a nursing facility certified under Medicaid but not certified under Medicare.",
+        "Discharged/transferred to another rehab fac including rehab units of a hospital .",
+        "Discharged/transferred to another short term hospital",
+        "Discharged/transferred to another type of inpatient care institution",
+        "Discharged/transferred to home under care of Home IV provider",
+        "Discharged/transferred to home with home health service",
+        "Discharged/transferred within this institution to Medicare approved swing bed",
+        "Discharged/transferred/referred another institution for outpatient services",
+        "Discharged/transferred/referred to a psychiatric hospital of psychiatric distinct part unit of a hospital",
+        "Discharged/transferred/referred to this institution for outpatient services",
+        "Expired",
+        "Expired at home. Medicaid only, hospice.",
+        "Expired in a medical facility. Medicaid only, hospice.",
+        "Hospice / home",
+        "Hospice / medical facility",
+        "Left AMA",
+        "Unknown"
+      ],
+      "counts": [
+        2,
+        8951,
+        115,
+        2187,
+        2,
+        60,
+        7,
+        292,
+        352,
+        186,
+        13,
+        1941,
+        10,
+        3,
+        26,
+        3,
+        245,
+        1,
+        1,
+        59,
+        53,
+        113,
+        688,
+        0
+      ]
+    },
+    "admission_source": {
+      "kind": "categorical",
+      "categories": [
+        "Clinic Referral",
+        "Court/Law Enforcement",
+        "Emergency Room",
+        "HMO Referral",
+        "Normal Delivery",
+        "Physician Referral",
+        "Sick Baby",
+        "Transfer from Ambulatory Surgery Center",
+        "Transfer from a Skilled Nursing Facility (SNF)",
+        "Transfer from a hospital",
+        "Transfer from another health care facility",
+        "Transfer from critial access hospital",
+        "Transfer from hospital inpt/same fac reslt in a sep claim",
+        "Unknown"
+      ],
+      "counts": [
+        166,
+        2,
+        8780,
+        28,
+        1,
+        4412,
+        1,
+        1,
+        120,
+        449,
+        322,
+        2,
+        1,
+        1025,
+        0
+      ]
+    },
+    "diag_1_group": {
+      "kind": "categorical",
+      "categories": [
+        "Circulatory",
+        "Diabetes",
+        "Digestive",
+        "Genitourinary",
+        "Injury",
+        "Musculoskeletal",
+        "Neoplasms",
+        "Other",
+        "Respiratory",
+        "Unknown"
+      ],
+      "counts": [
+        4589,
+        1319,
+        1464,
+        790,
+        1061,
+        772,
+        516,
+        2645,
+        2149,
+        5,
+        0
+      ]
+    },
+    "diag_2_group": {
+      "kind": "categorical",
+      "categories": [
+        "Circulatory",
+        "Diabetes",
+        "Digestive",
+        "Genitourinary",
+        "Injury",
+        "Musculoskeletal",
+        "Neoplasms",
+        "Other",
+        "Respiratory",
+        "Unknown"
+      ],
+      "counts": [
+        4805,
+        1832,
+        618,
+        1311,
+        379,
+        250,
+        386,
+        4087,
+        1598,
+        44,
+        0
+      ]
+    },
+    "diag_3_group": {
+      "kind": "categorical",
+      "categories": [
+        "Circulatory",
+        "Diabetes",
+        "Digestive",
+        "Genitourinary",
+        "Injury",
+        "Musculoskeletal",
+        "Neoplasms",
+        "Other",
+        "Respiratory",
+        "Unknown"
+      ],
+      "counts": [
+        4510,
+        2652,
+        620,
+        1017,
+        284,
+        303,
+        290,
+        4351,
+        1080,
+        203,
+        0
+      ]
+    },
+    "max_glu_serum": {
+      "kind": "categorical",
+      "categories": [
+        ">200",
+        ">300",
+        "Norm",
+        "Unknown"
+      ],
+      "counts": [
+        214,
+        172,
+        410,
+        14514,
+        0
+      ]
+    },
+    "A1Cresult": {
+      "kind": "categorical",
+      "categories": [
+        ">7",
+        ">8",
+        "Norm",
+        "Unknown"
+      ],
+      "counts": [
+        582,
+        1216,
+        757,
+        12755,
+        0
+      ]
+    },
+    "change": {
+      "kind": "categorical",
+      "categories": [
+        "Ch",
+        "No"
+      ],
+      "counts": [
+        7052,
+        8258,
+        0
+      ]
+    },
+    "diabetesMed": {
+      "kind": "categorical",
+      "categories": [
+        "No",
+        "Yes"
+      ],
+      "counts": [
+        3598,
+        11712,
+        0
+      ]
+    },
+    "time_in_hospital": {
+      "kind": "numeric",
+      "interior": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        7.0,
+        9.0,
+        14.0
+      ],
+      "counts": [
+        0,
+        2021,
+        2635,
+        2713,
+        2104,
+        2679,
+        1562,
+        1456,
+        140
+      ]
+    },
+    "num_lab_procedures": {
+      "kind": "numeric",
+      "interior": [
+        1.0,
+        15.0,
+        27.0,
+        35.0,
+        40.0,
+        44.0,
+        49.0,
+        54.0,
+        60.0,
+        68.0,
+        108.0
+      ],
+      "counts": [
+        0,
+        1511,
+        1416,
+        1500,
+        1559,
+        1379,
+        1705,
+        1455,
+        1579,
+        1662,
+        1541,
+        3
+      ]
+    },
+    "num_procedures": {
+      "kind": "numeric",
+      "interior": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        6.0
+      ],
+      "counts": [
+        0,
+        6958,
+        3110,
+        1973,
+        1385,
+        1098,
+        786
+      ]
+    },
+    "num_medications": {
+      "kind": "numeric",
+      "interior": [
+        1.0,
+        7.0,
+        9.0,
+        11.0,
+        13.0,
+        15.0,
+        17.0,
+        19.0,
+        22.0,
+        26.0,
+        79.0
+      ],
+      "counts": [
+        0,
+        1161,
+        1175,
+        1563,
+        1764,
+        1754,
+        1671,
+        1447,
+        1638,
+        1402,
+        1734,
+        1
+      ]
+    },
+    "number_outpatient": {
+      "kind": "numeric",
+      "interior": [
+        0.0,
+        1.0,
+        35.0
+      ],
+      "counts": [
+        0,
+        12870,
+        2439,
+        1
+      ]
+    },
+    "number_emergency": {
+      "kind": "numeric",
+      "interior": [
+        0.0,
+        1.0,
+        42.0
+      ],
+      "counts": [
+        0,
+        13552,
+        1757,
+        1
+      ]
+    },
+    "number_inpatient": {
+      "kind": "numeric",
+      "interior": [
+        0.0,
+        1.0,
+        2.0,
+        19.0
+      ],
+      "counts": [
+        0,
+        10149,
+        2991,
+        2169,
+        1
+      ]
+    },
+    "number_diagnoses": {
+      "kind": "numeric",
+      "interior": [
+        1.0,
+        5.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        16.0
+      ],
+      "counts": [
+        0,
+        1364,
+        1728,
+        1516,
+        1580,
+        1645,
+        7471,
+        6
+      ]
+    }
+  },
+  "prediction_counts": [
+    287,
+    539,
+    1955,
+    3533,
+    3797,
+    3119,
+    1368,
+    543,
+    164,
+    5
+  ]
+}

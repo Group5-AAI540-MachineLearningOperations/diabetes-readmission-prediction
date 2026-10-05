@@ -1,0 +1,262 @@
+{
+  "start": "-PT3H",
+  "periodOverride": "inherit",
+  "widgets": [
+    {
+      "type": "metric",
+      "x": 0,
+      "y": 0,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "title": "Traffic and scoring failures",
+        "region": "us-east-1",
+        "view": "timeSeries",
+        "period": 300,
+        "stat": "Sum",
+        "metrics": [
+          [
+            "CarePath/Readmission/Replay",
+            "InputCount",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "ScoredCount",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "InferenceErrorCount",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "metric",
+      "x": 12,
+      "y": 0,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "title": "Risk scores and positive predictions",
+        "region": "us-east-1",
+        "view": "timeSeries",
+        "period": 300,
+        "stat": "Average",
+        "metrics": [
+          [
+            "CarePath/Readmission/Replay",
+            "MeanRiskScore",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "PositivePredictionRate",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "metric",
+      "x": 0,
+      "y": 6,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "title": "Data quality",
+        "region": "us-east-1",
+        "view": "timeSeries",
+        "period": 300,
+        "stat": "Average",
+        "metrics": [
+          [
+            "CarePath/Readmission/Replay",
+            "InvalidRowRate",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "MissingFeatureRate",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "UnknownCategoryRate",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "metric",
+      "x": 12,
+      "y": 6,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "title": "Distribution drift",
+        "region": "us-east-1",
+        "view": "timeSeries",
+        "period": 300,
+        "stat": "Average",
+        "metrics": [
+          [
+            "CarePath/Readmission/Replay",
+            "MaxFeaturePSI",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "PredictionPSI",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "metric",
+      "x": 0,
+      "y": 12,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "title": "Mature-label performance",
+        "region": "us-east-1",
+        "view": "timeSeries",
+        "period": 300,
+        "stat": "Average",
+        "metrics": [
+          [
+            "CarePath/Readmission/Replay",
+            "Recall",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "Precision",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "PRAUC",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "ROCAUC",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "BrierScore",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "metric",
+      "x": 12,
+      "y": 12,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "title": "Outcome coverage and subgroup recall gap",
+        "region": "us-east-1",
+        "view": "timeSeries",
+        "period": 300,
+        "stat": "Average",
+        "metrics": [
+          [
+            "CarePath/Readmission/Replay",
+            "LabelCoverage",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ],
+          [
+            "CarePath/Readmission/Replay",
+            "RecallGap",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "metric",
+      "x": 0,
+      "y": 18,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "title": "Client latency: p95 within each window (ms)",
+        "region": "us-east-1",
+        "view": "timeSeries",
+        "period": 300,
+        "stat": "Average",
+        "metrics": [
+          [
+            "CarePath/Readmission/Replay",
+            "ClientLatencyP95Ms",
+            "ModelVersion",
+            "0d4d31c0d1b5",
+            "EndpointName",
+            "local-artifact"
+          ]
+        ]
+      }
+    }
+  ]
+}
