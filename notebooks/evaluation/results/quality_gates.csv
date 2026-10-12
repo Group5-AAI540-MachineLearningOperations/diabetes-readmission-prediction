@@ -1,0 +1,7 @@
+check,actual,rule,passed
+Recall,0.7250593824228029,>= 0.7,True
+PR-AUC,0.22873543004697078,>= 0.2,True
+ROC-AUC,0.6836498182620039,>= 0.65,True
+Precision,0.1614438714795716,>= 0.15,True
+Beat benchmark PR-AUC,0.22873543004697078,> 0.1102,True
+Beat benchmark recall,0.7250593824228029,> 0.0000,True

@@ -1,0 +1,72 @@
+{
+  "model": "XGBoost",
+  "status": "PASS",
+  "test_encounters": 15278,
+  "random_state": 42,
+  "decision_threshold": 0.4348699748516083,
+  "patient_overlap_check": true,
+  "test_metrics": {
+    "accuracy": 0.5545882968974997,
+    "pr_auc": 0.22873543004697078,
+    "roc_auc": 0.6836498182620039,
+    "recall": 0.7250593824228029,
+    "precision": 0.1614438714795716,
+    "f1": 0.26408564939980533
+  },
+  "benchmark_metrics": {
+    "accuracy": 0.8897761487105642,
+    "pr_auc": 0.11022385128943579,
+    "roc_auc": 0.5,
+    "recall": 0.0,
+    "precision": 0.0,
+    "f1": 0.0
+  },
+  "confusion_matrix": [
+    [
+      7252,
+      6342
+    ],
+    [
+      463,
+      1221
+    ]
+  ],
+  "quality_gates": [
+    {
+      "check": "Recall",
+      "actual": 0.7250593824228029,
+      "rule": ">= 0.7",
+      "passed": true
+    },
+    {
+      "check": "PR-AUC",
+      "actual": 0.22873543004697078,
+      "rule": ">= 0.2",
+      "passed": true
+    },
+    {
+      "check": "ROC-AUC",
+      "actual": 0.6836498182620039,
+      "rule": ">= 0.65",
+      "passed": true
+    },
+    {
+      "check": "Precision",
+      "actual": 0.1614438714795716,
+      "rule": ">= 0.15",
+      "passed": true
+    },
+    {
+      "check": "Beat benchmark PR-AUC",
+      "actual": 0.22873543004697078,
+      "rule": "> 0.1102",
+      "passed": true
+    },
+    {
+      "check": "Beat benchmark recall",
+      "actual": 0.7250593824228029,
+      "rule": "> 0.0000",
+      "passed": true
+    }
+  ]
+}
