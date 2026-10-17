@@ -5,15 +5,15 @@
     "precision_recall_auc"
   ],
   "test_metrics": {
-    "pr_auc": 0.2276555638786331,
-    "roc_auc": 0.684938090089347,
-    "recall": 0.7185273159144893,
-    "precision": 0.1626562710041672,
-    "f1": 0.2652636194234353,
-    "threshold": 0.44392746686935425
+    "pr_auc": 0.22873543004697078,
+    "roc_auc": 0.6836498182620039,
+    "recall": 0.7250593824228029,
+    "precision": 0.1614438714795716,
+    "f1": 0.26408564939980533,
+    "threshold": 0.4348699748516083
   },
-  "decision_threshold": 0.44392746686935425,
-  "selected_candidate": 2,
+  "decision_threshold": 0.4348699748516083,
+  "selected_candidate": 3,
   "raw_model_features": [
     "age",
     "admission_type",
