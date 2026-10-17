@@ -8,37 +8,42 @@ AAI-540 Group 5 project. We use the Diabetes 130-US Hospitals data to predict wh
 2. Split patients into training (70%), validation (15%), and test (15%) sets. All encounters for one patient stay in the same set.
 3. Train a logistic regression baseline and three XGBoost candidates. Choose the XGBoost model by validation PR-AUC, then choose a prediction threshold on validation data with a target of at least 70% recall.
 4. Evaluate once on the test set. Check recall, precision, PR-AUC, ROC-AUC, the confusion matrix, and results by race, gender, and age.
-5. Save the model and evaluation files. The training notebook registers a model package in SageMaker with `PendingManualApproval` status.
-6. Run the local quality gate. After a model is approved in SageMaker, the deployment notebook can create a real-time endpoint. Separate notebooks cover data capture and monitoring.
+5. Save the model and evaluation files, register the model in SageMaker, and deploy a real-time endpoint with request and response capture.
+6. Check captured traffic for drift and publish metrics and an alarm to CloudWatch.
+7. Set up a repeatable SageMaker Pipeline that extracts data from Feature Store, preprocesses it, trains and evaluates a model, and registers it only if all performance and fairness gates pass.
+
+The full MLOps setup is covered by notebooks **01 through 05** in [`notebooks/setup/`](notebooks/setup/). The notebooks in [`notebooks/development/`](notebooks/development/) are the experiments and checks we used while developing the project. They are useful for testing and exploration, but they are not required to set up the infrastructure.
 
 ## Repository files
 
 | Path | Purpose |
 | --- | --- |
 | [`data/`](data/) | Hospital encounter data and `IDS_mapping.csv` lookup file. |
-| [`notebooks/01_data_ingestion_eda.ipynb`](notebooks/01_data_ingestion_eda.ipynb) | Initial S3 ingestion, AWS Glue cataloging, and data exploration. |
-| [`notebooks/00-models.ipynb`](notebooks/00-models.ipynb) | Majority-class benchmark. |
-| [`notebooks/training/train-model.ipynb`](notebooks/training/train-model.ipynb) | Data preparation, model training, test evaluation, fairness tables, and SageMaker registration. |
-| [`notebooks/training/artifacts/`](notebooks/training/artifacts/) | Saved processed data, model, preprocessor, and evaluation results from the training run. |
-| [`notebooks/evaluation/automated-model-evaluation.ipynb`](notebooks/evaluation/automated-model-evaluation.ipynb) | Local model evaluation and pass/fail quality gates. |
-| [`notebooks/evaluation/results/`](notebooks/evaluation/results/) | Saved quality gate report and comparison tables. |
-| [`notebooks/infrastructure/deploy-model.ipynb`](notebooks/infrastructure/deploy-model.ipynb) | Deploy the latest approved model package to a SageMaker real-time endpoint. |
-| [`notebooks/setup/`](notebooks/setup/) | SageMaker Feature Store setup and endpoint data drift checks. |
-| [`notebooks/monitor/cloudwatch-monitoring.ipynb`](notebooks/monitor/cloudwatch-monitoring.ipynb) | Drift, outcome metrics, CloudWatch alarms, and dashboard workflow. |
+| [`notebooks/setup/`](notebooks/setup/) | The five notebooks for the full MLOps setup, along with the pipeline's feature extraction, preprocessing, and evaluation scripts. |
+| [`notebooks/setup/artifacts/`](notebooks/setup/artifacts/) | Saved processed data, model, preprocessor, evaluation results, and fairness tables from model initialization. |
+| [`notebooks/development/00-models.ipynb`](notebooks/development/00-models.ipynb) | Majority-class benchmark used during development. |
+| [`notebooks/development/01_data_ingestion_eda.ipynb`](notebooks/development/01_data_ingestion_eda.ipynb) | Early S3 ingestion, AWS Glue cataloging, and data exploration. |
+| [`notebooks/development/evaluation/automated-model-evaluation.ipynb`](notebooks/development/evaluation/automated-model-evaluation.ipynb) | Local model evaluation and pass/fail quality gate experiments. |
+| [`notebooks/development/evaluation/results/`](notebooks/development/evaluation/results/) | Saved quality gate report and comparison tables. |
+| [`notebooks/development/monitor/cloudwatch-monitoring.ipynb`](notebooks/development/monitor/cloudwatch-monitoring.ipynb) | Exploration of drift and outcome metrics, CloudWatch alarms, and dashboards. |
 
 ## Run the notebooks
 
-Use Python 3 and Jupyter. The local evaluation notebook needs `numpy`, `pandas`, `scikit-learn`, `xgboost`, `joblib`, and `matplotlib`. Its first code cell includes an optional install command. The saved preprocessor was created with **scikit-learn 1.4.2**, so use that version when loading it. The AWS notebooks also need AWS credentials, permissions for the services they call, `boto3`, and SageMaker SDK 2.x. They are intended for a SageMaker environment.
+### Full MLOps setup
 
-For a local check with the included artifacts, open [`notebooks/evaluation/automated-model-evaluation.ipynb`](notebooks/evaluation/automated-model-evaluation.ipynb) and run all cells. It finds the project folder, recreates the patient split, loads the saved model, calculates test metrics, and writes `quality_gate_report.json`, `quality_gates.csv`, and `model_comparison.csv` under `notebooks/evaluation/results/`. It stops with an error if a data check or quality gate fails.
+Use Python 3 and Jupyter in a SageMaker environment with an execution role that can access the AWS services used by the notebooks. These include S3, SageMaker, Feature Store, Glue, Athena, and CloudWatch. The notebooks use `boto3` and SageMaker SDK 2.x; keep the SageMaker SDK below version 3.
 
-To run this check from a terminal at the project root, install Jupyter and the packages above, then use:
+Model training and local checks also use `numpy`, `pandas`, `scipy`, `scikit-learn`, `xgboost`, `joblib`, and `matplotlib`. The saved preprocessor was created with **scikit-learn 1.4.2**, so use that version when loading it.
 
-```bash
-jupyter nbconvert --to notebook --execute notebooks/evaluation/automated-model-evaluation.ipynb --output automated-model-evaluation-executed.ipynb --ExecutePreprocessor.timeout=600
-```
+Run the following notebooks in order, from top to bottom. Keep each notebook's working directory set to [`notebooks/setup/`](notebooks/setup/) so its relative paths resolve correctly.
 
-For the full AWS workflow, start with the ingestion and Feature Store notebooks if those resources are needed in your account. Run the benchmark and training notebooks next. Review the saved test results and quality gate report before approving a model package. Then run the deployment and monitoring notebooks. Deployment creates a billable SageMaker endpoint; the monitoring setup notebook includes a cleanup section.
+| Order | Notebook | What it does |
+| --- | --- | --- |
+| 01 | [`01-initialize-sagemaker.ipynb`](notebooks/setup/01-initialize-sagemaker.ipynb) | Prepares the hospital data, creates the SageMaker Feature Store feature group, ingests records, and verifies online retrieval. |
+| 02 | [`02-initialize-model.ipynb`](notebooks/setup/02-initialize-model.ipynb) | Prepares features, creates patient-level splits, trains and evaluates the models, saves artifacts, and registers the selected model. |
+| 03 | [`03-initialize-endpoint.ipynb`](notebooks/setup/03-initialize-endpoint.ipynb) | Deploys the selected model's image and artifacts to a real-time endpoint, enables data capture, and checks endpoint predictions against the local model. |
+| 04 | [`04-model-monitoring.ipynb`](notebooks/setup/04-model-monitoring.ipynb) | Builds a training baseline, sends test traffic, checks captured requests for drift, and publishes CloudWatch metrics and an alarm. |
+| 05 | [`05-CI-CD-DAG.ipynb`](notebooks/setup/05-CI-CD-DAG.ipynb) | Creates and runs the SageMaker Pipeline for Feature Store extraction, preprocessing, training, evaluation, quality gates, and model registration. |
 
 ## Saved model results
 
@@ -54,8 +59,10 @@ The saved XGBoost model uses 500 trees, a maximum depth of 6, and a learning rat
 
 The included quality gate report shows **PASS** for the example project thresholds: recall at least 0.70, precision at least 0.15, PR-AUC at least 0.20, ROC-AUC at least 0.65, and recall and PR-AUC above the majority-class benchmark. Precision is still low, so many positive predictions are false alarms. These thresholds are class-project checks, not clinical standards.
 
-The deployment notebook uses one `ml.m5.large` instance for real-time predictions. Its model package must already have `Approved` status in SageMaker. The training notebook creates a package with `PendingManualApproval` status; it does not approve it automatically.
+The endpoint notebook uses one `ml.m5.large` instance for real-time predictions. For the demo, it deploys the selected model package's image and artifacts directly without changing the package's registry approval status. Model initialization and the automated pipeline register models with `PendingManualApproval` status.
 
-## Proposed improvements
+## System Architecture
 
-The [system diagram](docs/images/ml-system-feature-enhancements.png) marks possible future work in blue. This includes newer hospital data, stronger data quality checks, more model tuning, expanded fairness checks, and monitoring with retraining when real outcomes become available. These are proposed improvements rather than completed features.
+![system diagram](./System-Architecture.jpg)
+
+The System Architecture diagram marks possible future work in blue. This includes newer hospital data, stronger data quality checks, more model tuning, expanded fairness checks, and monitoring with retraining when real outcomes become available. These are proposed improvements rather than completed features.
