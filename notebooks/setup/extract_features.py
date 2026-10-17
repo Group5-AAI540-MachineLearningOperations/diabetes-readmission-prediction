@@ -33,15 +33,21 @@ if __name__ == "__main__":
     )["QueryExecutionId"]
 
     while True:
-        status = athena.get_query_execution(QueryExecutionId=qid)["QueryExecution"]["Status"]
+        status = athena.get_query_execution(QueryExecutionId=qid)["QueryExecution"][
+            "Status"
+        ]
         if status["State"] in ("SUCCEEDED", "FAILED", "CANCELLED"):
             break
         time.sleep(3)
 
     if status["State"] != "SUCCEEDED":
-        raise RuntimeError(f"Athena query {status['State']}: {status.get('StateChangeReason')}")
+        raise RuntimeError(
+            f"Athena query {status['State']}: {status.get('StateChangeReason')}"
+        )
 
-    result_uri = athena.get_query_execution(QueryExecutionId=qid)["QueryExecution"]["ResultConfiguration"]["OutputLocation"]
+    result_uri = athena.get_query_execution(QueryExecutionId=qid)["QueryExecution"][
+        "ResultConfiguration"
+    ]["OutputLocation"]
     bucket, key = result_uri.replace("s3://", "").split("/", 1)
 
     out_dir = "/opt/ml/processing/output"
