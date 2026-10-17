@@ -250,7 +250,7 @@
         <mxCell id="2uih4dEnzvVM1BxHjsTP-195" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Model deployments" vertex="1">
           <mxGeometry height="34" width="120" x="900" y="275" as="geometry" />
         </mxCell>
-        <mxCell id="DGOW0FPp4YI4dsR07pPw-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="POST /endpoints/EndpointName/invocations&lt;br&gt;&lt;br&gt;{ facilityId, patientId, patientData }" vertex="1">
+        <mxCell id="DGOW0FPp4YI4dsR07pPw-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="POST /endpoints/EndpointName/invocations&lt;br&gt;&lt;br&gt;Content-Type: text/csv" vertex="1">
           <mxGeometry height="94.06" width="270" x="535.25" y="629.94" as="geometry" />
         </mxCell>
         <mxCell id="vS5tJRkbINUAQNMbCRJ5-14" edge="1" parent="1" source="DGOW0FPp4YI4dsR07pPw-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="2uih4dEnzvVM1BxHjsTP-61">
