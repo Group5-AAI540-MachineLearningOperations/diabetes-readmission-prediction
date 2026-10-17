@@ -1,6 +1,6 @@
 # Diabetes Readmission Prediction
 
-AAI-540 Group 5 project. We use the Diabetes 130-US Hospitals data to predict whether a patient will be readmitted within 30 days. The target is `readmitted_30d`: `1` means readmitted in less than 30 days, and `0` means otherwise. This is a class project and its predictions are not for clinical decisions.
+AAI-540 Group 5 project. We use the Diabetes 130-US Hospitals data to predict whether a patient will be readmitted within 30 days. The model returns a floating-point risk score between 0.0 and 1.0. A score at or above a threshold tuned on validation data is classified as a predicted readmission in less than 30 days; a score below it is not. The saved model's threshold is about 0.4362. This is a class project and its predictions are not for clinical decisions.
 
 ## Project workflow
 
