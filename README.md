@@ -1,6 +1,12 @@
 # Diabetes Readmission Prediction
 
-AAI-540 Group 5 project. We use the Diabetes 130-US Hospitals data to predict whether a patient will be readmitted within 30 days. The model returns a floating-point risk score between 0.0 and 1.0. A score at or above a threshold tuned on validation data is classified as a predicted readmission in less than 30 days; a score below it is not. The saved model's threshold is about 0.4362. This is a class project and its predictions are not for clinical decisions.
+AAI-540 Group 5 project. We use the Diabetes 130-US Hospitals data to predict whether a patient will be readmitted within 30 days. The model returns a floating-point risk score between 0.0 and 1.0. A score at or above a threshold tuned on validation data is classified as a predicted readmission in less than 30 days; a score below it is not. The saved model's threshold is about 0.4349. This is a class project and its predictions are not for clinical decisions.
+
+**Team GitHub repository:** https://github.com/Group5-AAI540-MachineLearningOperations/diabetes-readmission-prediction
+
+Include this link in the separately submitted ML Design Document and confirm the instructor has repository access.
+
+**Data source:** [UCI Diabetes 130-US Hospitals for Years 1999–2008](https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008). Notebooks upload raw files to `s3://<default-sagemaker-bucket>/carepath-analytics/raw/`, processed data to `carepath-analytics/processed/`, and Feature Store offline data to `carepath-analytics/feature-store/`. The notebooks print exact account-specific S3 URIs. Local data copies are retained for reproducibility.
 
 ## Project workflow
 
@@ -32,6 +38,13 @@ The full MLOps setup is covered by notebooks **01 through 05** in [`notebooks/se
 ### Full MLOps setup
 
 Use Python 3 and Jupyter in a SageMaker environment with an execution role that can access the AWS services used by the notebooks. These include S3, SageMaker, Feature Store, Glue, Athena, and CloudWatch. The notebooks use `boto3` and SageMaker SDK 2.x; keep the SageMaker SDK below version 3.
+
+Use a fresh Python 3.12 environment/kernel and install the pinned dependencies from the repository root:
+
+```bash
+python -m pip install -r requirements.txt
+python -m pip check
+```
 
 Model training and local checks also use `numpy`, `pandas`, `scipy`, `scikit-learn`, `xgboost`, `joblib`, and `matplotlib`. The saved preprocessor was created with **scikit-learn 1.4.2**, so use that version when loading it.
 
